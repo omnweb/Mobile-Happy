@@ -2,10 +2,20 @@ import React from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'; // Dimensions retorna a dimensão da tela
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps' // Importando mapa
 
+import { useFonts } from 'expo-font'
+import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-google-fonts/nunito'
 import { Feather } from '@expo/vector-icons'
 import mapMarker from './src/images/map-marker.png'
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Nunito_800ExtraBold
+  })
+  if (!fontsLoaded) {
+    return null
+  }
   return (
     <View style={styles.container}>
       <MapView
@@ -56,6 +66,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height
   },
   calloutContainer: {
+    fontFamily: 'Nunito_700Bold',
     width: 160,
     height: 46,
     paddingHorizontal: 16,
@@ -85,6 +96,7 @@ const styles = StyleSheet.create({
     elevation: 3
   },
   footerText: {
+    fontFamily: 'Nunito_700Bold',
     color: '#8fa7b3',
   },
   createOrphanageButton: {
